@@ -8,9 +8,9 @@
       </button>
     </div>
   </div>
-  <app-books-list *ngIf="viewMode === 'list'; else tableView" [books]="books"></app-books-list>
+  <app-books-list *ngIf="viewMode === 'list'; else tableView" [books]="books$ | async"></app-books-list>
 </div>
 
 <ng-template #tableView>
-  <app-books-table [books]="books"></app-books-table>
+  <app-books-table [books]="books$ | async"></app-books-table>
 </ng-template>
