@@ -8,7 +8,13 @@ import { BooksTableRowComponent } from './books-table-row/books-table-row.compon
 
 
 @NgModule({
-  declarations: [BooksListComponent, BookItemComponent, BooksOverviewComponent, BooksTableComponent, BooksTableRowComponent],
+  declarations: [
+    BooksListComponent,
+    BookItemComponent,
+    BooksOverviewComponent,
+    BooksTableComponent,
+    BooksTableRowComponent
+  ],
   exports: [BooksOverviewComponent],
   imports: [
     CommonModule
