@@ -1,9 +1,10 @@
 <div class="card">
+  <ng-content select="div.card-header"></ng-content>
   <img [src]="book?.imageUrl"
        class="card-img-top">
   <div class="card-body"
        [ngClass]="{ 'deactivated': book?.isSoldOut }">
-    <h5 class="card-title">{{ book?.name }}<span class="badge badge-secondary" *ngIf="book?.isSoldOut">Sold out</span>
+    <h5 class="card-title">{{ book?.name }} <span class="badge badge-secondary" *ngIf="book?.isSoldOut">Sold out</span>
     </h5>
     <p class="card-text">{{ book?.author }}</p>
   </div>

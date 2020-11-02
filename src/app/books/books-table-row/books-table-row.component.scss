@@ -1,0 +1,11 @@
+:host {
+  td {
+    img {
+      height: 70px;
+    }
+  }
+}
+
+:host-context(.disabled) {
+  color: gray;
+}

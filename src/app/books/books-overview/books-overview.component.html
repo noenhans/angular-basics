@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <h1 class="display-4 col-lg-10">Books overview</h1>
+    <div class="col-lg-2 btn-group__header">
+      <button type="button" class="btn btn-info" (click)="toogleView()">
+        <i class="fas" [ngClass]="{ 'fa-list': viewMode === 'table', 'fa-table': viewMode === 'list' }"></i>
+        Toogle view
+      </button>
+    </div>
+  </div>
+  <app-books-list *ngIf="viewMode === 'list'; else tableView" [books]="books"></app-books-list>
+</div>
+
+<ng-template #tableView>
+  <app-books-table [books]="books"></app-books-table>
+</ng-template>

@@ -1,4 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {
+  Component,
+  Input,
+} from '@angular/core';
 import {Book} from '../book';
 
 @Component({
@@ -8,6 +11,7 @@ import {Book} from '../book';
 })
 export class BookItemComponent {
   private _book: Book;
+
 
   @Input() set book(book: Book) {
     this._book = book;

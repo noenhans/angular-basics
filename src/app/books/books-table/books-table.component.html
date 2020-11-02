@@ -1,0 +1,12 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Cover</th>
+    <th scope="col">Title</th>
+    <th scope="col">Author</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr book-item *ngFor="let book of books" [book]="book" [class.disabled]="book.isSoldOut"></tr>
+  </tbody>
+</table>
