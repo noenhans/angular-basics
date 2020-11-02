@@ -1,4 +1,11 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+
+interface Book {
+  name: string;
+  author: string;
+  imageUrl?: string;
+  isSoldOut: boolean;
+}
 
 @Component({
   selector: 'app-root',
@@ -6,5 +13,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-basics';
+
 }
