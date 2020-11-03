@@ -1,8 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {BooksOverviewComponent} from './books/books-overview/books-overview.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 const routes: Routes = [
-
+  {
+    path: '',
+    redirectTo: 'books',
+    pathMatch: 'full'
+  },
+  {
+    path: 'books',
+    component: BooksOverviewComponent
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
+  },
 ];
 
 @NgModule({
