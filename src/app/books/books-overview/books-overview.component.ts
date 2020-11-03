@@ -3,12 +3,14 @@ import {Book} from '../book';
 import {ViewMode} from './view-mode';
 import {ActivatedRoute} from '@angular/router';
 import {map, takeUntil} from 'rxjs/operators';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+import {BooksClientService} from '../books-client.service';
 
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
-  styleUrls: ['./books-overview.component.scss']
+  styleUrls: ['./books-overview.component.scss'],
+  providers: []
 })
 export class BooksOverviewComponent implements OnInit, OnDestroy {
   viewMode: 'table' | 'grid';
@@ -17,43 +19,17 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
 
   private destroy$ = new Subject();
 
-  books: Book[] = [
-    {
-      name: 'Harry Potter i Kamień Filozoficzny 1',
-      author: 'J. K. Rowling',
-      imageUrl: 'https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg',
-      isSoldOut: false
-    },
-    {
-      name: 'Harry Potter i Kamień Filozoficzny 2',
-      author: 'J. K. Rowling',
-      imageUrl: 'https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg',
-      isSoldOut: false
-    },
-    {
-      name: 'Harry Potter i Kamień Filozoficzny 3',
-      author: 'J. K. Rowling',
-      imageUrl: 'https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg',
-      isSoldOut: false
-    },
-    {
-      name: 'Harry Potter i Kamień Filozoficzny 4',
-      author: 'J. K. Rowling',
-      imageUrl: 'https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg',
-      isSoldOut: true
-    },
-    {
-      name: 'Harry Potter i Kamień Filozoficzny 5',
-      author: 'J. K. Rowling',
-      imageUrl: 'https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg',
-      isSoldOut: false
-    }
-  ];
+  books$: Observable<Book[]>;
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private booksClient: BooksClientService
+  ) {
   }
 
   ngOnInit(): void {
+    this.books$ = this.booksClient.getBooks();
+
     this.activatedRoute.params.pipe(
       map(({viewMode}) => viewMode),
       takeUntil(this.destroy$)

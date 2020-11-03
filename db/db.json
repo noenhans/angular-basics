@@ -1,0 +1,39 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "name": "Harry Potter i Kamień Filozoficzny 1",
+      "author": "J. K. Rowling",
+      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "isSoldOut": false
+    },
+    {
+      "id": 2,
+      "name": "Harry Potter i Kamień Filozoficzny 2",
+      "author": "J. K. Rowling",
+      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "isSoldOut": false
+    },
+    {
+      "id": 3,
+      "name": "Harry Potter i Kamień Filozoficzny 3",
+      "author": "J. K. Rowling",
+      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "isSoldOut": false
+    },
+    {
+      "id": 4,
+      "name": "Harry Potter i Kamień Filozoficzny 4",
+      "author": "J. K. Rowling",
+      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "isSoldOut": true
+    },
+    {
+      "id": 5,
+      "name": "Harry Potter i Kamień Filozoficzny 5",
+      "author": "J. K. Rowling",
+      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "isSoldOut": false
+    }
+  ]
+}
