@@ -1,10 +1,11 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Book} from '../book';
 
 @Component({
   selector: 'app-book-item',
   templateUrl: './book-item.component.html',
-  styleUrls: ['./book-item.component.scss']
+  styleUrls: ['./book-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookItemComponent implements OnChanges {
   private _book: Book;

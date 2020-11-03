@@ -91,6 +91,9 @@ export class BooksListComponent implements OnInit, OnChanges, DoCheck, OnDestroy
 
   onToogle(): void {
     console.log('clicked');
-    this.books.forEach(book => book.isSoldOut = true);
+    this.books = this.books.map(book => ({
+      ...book,
+      isSoldOut: true
+    }));
   }
 }
