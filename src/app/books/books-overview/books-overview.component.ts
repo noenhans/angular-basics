@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../book';
 import {ViewMode} from './view-mode';
 import {ActivatedRoute} from '@angular/router';
+import {map, takeUntil} from 'rxjs/operators';
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
   styleUrls: ['./books-overview.component.scss']
 })
-export class BooksOverviewComponent implements OnInit{
+export class BooksOverviewComponent implements OnInit, OnDestroy {
   viewMode: 'table' | 'grid';
 
   readonly viewModeValues = ViewMode;
+
+  private destroy$ = new Subject();
 
   books: Book[] = [
     {
@@ -50,10 +54,18 @@ export class BooksOverviewComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.viewMode = this.activatedRoute.snapshot.params.viewMode;
+    this.activatedRoute.params.pipe(
+      map(({viewMode}) => viewMode),
+      takeUntil(this.destroy$)
+    ).subscribe(viewMode => this.viewMode = viewMode);
   }
 
-  toogleViewMode(): void {
-    this.viewMode = this.viewMode === ViewMode.GRID ? ViewMode.TABLE : ViewMode.GRID;
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  get nextViewMode(): string {
+    return this.viewMode === ViewMode.GRID ? ViewMode.TABLE : ViewMode.GRID;
   }
 }

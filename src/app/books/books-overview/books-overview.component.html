@@ -2,7 +2,7 @@
   <div class="row">
     <h1 class="display-4 col-lg-10">Books overview</h1>
     <div class="col-lg-2 btn-header-group">
-      <button type="button" class="btn btn-info" (click)="toogleViewMode()">
+      <button type="button" class="btn btn-info" [routerLink]="['..', nextViewMode]">
         <i class="fas" [ngClass]="{
           'fa-table': viewMode === viewModeValues.GRID,
           'fa-th': viewMode === viewModeValues.TABLE
