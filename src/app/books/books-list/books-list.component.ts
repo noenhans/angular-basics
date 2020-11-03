@@ -4,13 +4,14 @@ import {
   AfterViewChecked,
   AfterViewInit,
   Component,
-  DoCheck,
+  DoCheck, ElementRef,
   OnChanges,
   OnDestroy,
-  OnInit,
-  SimpleChanges
+  OnInit, QueryList,
+  SimpleChanges, ViewChild, ViewChildren
 } from '@angular/core';
 import {Book} from '../book';
+import {BookItemComponent} from '../books-item/book-item.component';
 
 @Component({
   selector: 'app-books-list',
@@ -19,6 +20,10 @@ import {Book} from '../book';
 })
 export class BooksListComponent implements OnInit, OnChanges, DoCheck, OnDestroy, AfterContentInit, AfterContentChecked,
   AfterViewInit, AfterViewChecked {
+
+  @ViewChild(BookItemComponent) bookChild: BookItemComponent;
+  @ViewChildren(BookItemComponent) bookChildren: QueryList<BookItemComponent>;
+  @ViewChild('header') headerChild: ElementRef;
 
   books: Book[] = [
     {
@@ -71,6 +76,8 @@ export class BooksListComponent implements OnInit, OnChanges, DoCheck, OnDestroy
 
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit');
+    console.log(this.bookChild);
+    console.log(this.bookChildren.toArray());
   }
 
   ngDoCheck(): void {

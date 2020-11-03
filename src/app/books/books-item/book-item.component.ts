@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  ElementRef,
+  Input,
+  OnChanges,
+  SimpleChanges
+} from '@angular/core';
 import {Book} from '../book';
 
 @Component({
@@ -7,7 +16,10 @@ import {Book} from '../book';
   styleUrls: ['./book-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BookItemComponent implements OnChanges {
+export class BookItemComponent implements OnChanges, AfterContentInit {
+  @ContentChild('contentHeader') contentHeader: ElementRef;
+  @ContentChild('contentFooter') contentFooter: ElementRef;
+
   private _book: Book;
 
   @Input() set book(book: Book) {
@@ -21,5 +33,12 @@ export class BookItemComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     console.log('ngOnChanges Child', changes);
   }
+
+  ngAfterContentInit(): void {
+    console.log(this.contentHeader);
+    console.log(this.contentFooter);
+  }
+
+
 
 }
