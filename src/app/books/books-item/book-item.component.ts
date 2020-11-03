@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {Book} from '../book';
 
 @Component({
@@ -6,7 +6,7 @@ import {Book} from '../book';
   templateUrl: './book-item.component.html',
   styleUrls: ['./book-item.component.scss']
 })
-export class BookItemComponent {
+export class BookItemComponent implements OnChanges {
   private _book: Book;
 
   @Input() set book(book: Book) {
@@ -15,6 +15,10 @@ export class BookItemComponent {
 
   get book(): Book {
     return this._book;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges Child', changes);
   }
 
 }

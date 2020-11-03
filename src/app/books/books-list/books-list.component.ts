@@ -1,4 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  DoCheck,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  SimpleChanges
+} from '@angular/core';
 import {Book} from '../book';
 
 @Component({
@@ -6,7 +17,8 @@ import {Book} from '../book';
   templateUrl: './books-list.component.html',
   styleUrls: ['./books-list.component.scss']
 })
-export class BooksListComponent{
+export class BooksListComponent implements OnInit, OnChanges, DoCheck, OnDestroy, AfterContentInit, AfterContentChecked,
+  AfterViewInit, AfterViewChecked {
 
   books: Book[] = [
     {
@@ -41,4 +53,44 @@ export class BooksListComponent{
     }
   ];
 
+  constructor() {
+    console.log('constructor');
+  }
+
+  ngAfterContentChecked(): void {
+    console.log('ngAfterContentChecked');
+  }
+
+  ngAfterContentInit(): void {
+    console.log('ngAfterContentInit');
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('ngAfterViewInit');
+  }
+
+  ngDoCheck(): void {
+    console.log('ngDoCheck');
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ngOnChanges');
+  }
+
+  ngOnDestroy(): void {
+    console.log('ngOnDestroy');
+  }
+
+  ngOnInit(): void {
+    console.log('ngOnInit');
+  }
+
+  onToogle(): void {
+    console.log('clicked');
+    this.books.forEach(book => book.isSoldOut = true);
+  }
 }
