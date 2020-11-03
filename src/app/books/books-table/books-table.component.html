@@ -1,1 +1,12 @@
-<p>books-table works!</p>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Cover</th>
+    <th scope="col">Title</th>
+    <th scope="col">Author</th>
+  </tr>
+  </thead>
+  <tbody>
+    <tr bookitem *ngFor="let book of books" [book]="book"></tr>
+  </tbody>
+</table>

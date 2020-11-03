@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Book} from '../book';
 
 @Component({
-  selector: 'app-books-table-row',
+  selector: 'tr[bookitem]',
   templateUrl: './books-table-row.component.html',
   styleUrls: ['./books-table-row.component.scss']
 })
-export class BooksTableRowComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class BooksTableRowComponent  {
+  @Input() book: Book;
 
 }
