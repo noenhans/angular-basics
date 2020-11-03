@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'books',
-    component: BooksOverviewComponent
+    loadChildren: () => import('./books/books.module').then(m => m.BooksModule),
   },
   {
     path: '**',

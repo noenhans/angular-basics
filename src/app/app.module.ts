@@ -3,7 +3,6 @@ import { NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BooksModule } from './books/books.module';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
@@ -13,8 +12,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    BooksModule
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

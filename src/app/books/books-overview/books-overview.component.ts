@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Book} from '../book';
 import {ViewMode} from './view-mode';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-books-overview',
   templateUrl: './books-overview.component.html',
   styleUrls: ['./books-overview.component.scss']
 })
-export class BooksOverviewComponent {
-  viewMode: 'table' | 'grid' = ViewMode.GRID;
+export class BooksOverviewComponent implements OnInit{
+  viewMode: 'table' | 'grid';
 
   readonly viewModeValues = ViewMode;
 
@@ -44,6 +45,13 @@ export class BooksOverviewComponent {
       isSoldOut: false
     }
   ];
+
+  constructor(private activatedRoute: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+    this.viewMode = this.activatedRoute.snapshot.params.viewMode;
+  }
 
   toogleViewMode(): void {
     this.viewMode = this.viewMode === ViewMode.GRID ? ViewMode.TABLE : ViewMode.GRID;
