@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {BooksOverviewComponent} from './books-overview/books-overview.component';
+import {BooksResolver} from './books.resolver';
 
 const routes: Routes = [
   {
@@ -9,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: ':viewMode',
-    component: BooksOverviewComponent
+    component: BooksOverviewComponent,
+    resolve: { books: BooksResolver }
   }
 ];
 

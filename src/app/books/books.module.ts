@@ -6,6 +6,7 @@ import { BooksOverviewComponent } from './books-overview/books-overview.componen
 import { BooksTableComponent } from './books-table/books-table.component';
 import { BooksTableRowComponent } from './books-table-row/books-table-row.component';
 import {BooksRoutingModule} from './books-routing.module';
+import {BooksResolver} from './books.resolver';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import {BooksRoutingModule} from './books-routing.module';
     CommonModule,
     BooksRoutingModule
   ],
-  providers: []
+  providers: [
+    BooksResolver
+  ]
 })
 export class BooksModule {
 }

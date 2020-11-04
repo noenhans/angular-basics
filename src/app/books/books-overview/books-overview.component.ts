@@ -2,9 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../book';
 import {ViewMode} from './view-mode';
 import {ActivatedRoute} from '@angular/router';
-import {map, takeUntil} from 'rxjs/operators';
-import {Observable, Subject} from 'rxjs';
-import {BooksClientService} from '../books-client.service';
+import {pluck, switchMap, takeUntil} from 'rxjs/operators';
+import {combineLatest, Observable, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-books-overview',
@@ -22,16 +21,15 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
   books$: Observable<Book[]>;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private booksClient: BooksClientService
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
-    this.books$ = this.booksClient.getBooks();
+    this.books$ = this.activatedRoute.data.pipe(pluck('books'));
 
     this.activatedRoute.params.pipe(
-      map(({viewMode}) => viewMode),
+      pluck('viewMode'),
       takeUntil(this.destroy$)
     ).subscribe(viewMode => this.viewMode = viewMode);
   }
