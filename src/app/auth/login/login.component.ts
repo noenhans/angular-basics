@@ -14,4 +14,8 @@ export class LoginComponent {
     console.log(this.email, this.password);
   }
 
+  onEmailChange(): void {
+    console.log(this.email);
+  }
+
 }

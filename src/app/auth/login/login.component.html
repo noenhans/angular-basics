@@ -10,11 +10,12 @@
             id="email"
             name="email"
             [(ngModel)]="email"
+            (ngModelChange)="onEmailChange()"
             required
             appEmail
             email
           >
-          <div
+          <div ngmo
             *ngIf="loginForm.controls?.email?.invalid && loginForm.controls?.email?.touched"
             class="alert alert-danger"
           >
@@ -36,7 +37,7 @@
             Password is required
           </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
       </form>
     </div>
   </div>
