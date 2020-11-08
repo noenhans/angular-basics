@@ -1,3 +1,8 @@
 .btn-header-group {
   align-self: center;
+  text-align: right;
+
+  .btn {
+    margin-right: 5px;
+  }
 }
