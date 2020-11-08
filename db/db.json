@@ -2,38 +2,52 @@
   "books": [
     {
       "id": 1,
-      "name": "Harry Potter i Kamień Filozoficzny 1",
+      "name": "Harry Potter i Kamień Filozoficzny",
       "author": "J. K. Rowling",
-      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "imageUrl": "http://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
       "isSoldOut": false
     },
     {
       "id": 2,
-      "name": "Harry Potter i Kamień Filozoficzny 2",
+      "name": "Harry Potter i Komnata Tajemnic",
       "author": "J. K. Rowling",
-      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "imageUrl": "http://ecsmedia.pl/c/harry-potter-i-komnata-tajemnic-tom-2-w-iext43244666.jpg",
       "isSoldOut": false
     },
     {
       "id": 3,
-      "name": "Harry Potter i Kamień Filozoficzny 3",
+      "name": "Harry Potter i Więzień Azkabanu",
       "author": "J. K. Rowling",
-      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "imageUrl": "http://ecsmedia.pl/c/harry-potter-i-wiezien-azkabanu-tom-3-w-iext43244650.jpg",
       "isSoldOut": false
     },
     {
       "id": 4,
-      "name": "Harry Potter i Kamień Filozoficzny 4",
+      "name": "Harry Potter i Czara Ognia",
       "author": "J. K. Rowling",
-      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "imageUrl": "http://ecsmedia.pl/c/harry-potter-i-czara-ognia-tom-4-w-iext44156449.jpg",
       "isSoldOut": true
     },
     {
       "id": 5,
-      "name": "Harry Potter i Kamień Filozoficzny 5",
+      "name": "Harry Potter i Zakon Feniksa",
       "author": "J. K. Rowling",
-      "imageUrl": "https://ecsmedia.pl/c/harry-potter-i-kamien-filozoficzny-tom-1-w-iext43794838.jpg",
+      "imageUrl": "http://ecsmedia.pl/c/harry-potter-i-zakon-feniksa-tom-5-w-iext43290406.jpg",
       "isSoldOut": false
+    },
+    {
+      "name": "Lokatorka",
+      "author": "JP Delaney",
+      "imageUrl": "http://ecsmedia.pl/c/lokatorka-w-iext50068169.jpg",
+      "isSoldOut": false,
+      "id": 6
+    },
+    {
+      "name": "W Żywe Oczy",
+      "author": "JP Delaney",
+      "imageUrl": "http://ecsmedia.pl/c/w-zywe-oczy-w-iext52942504.jpg",
+      "isSoldOut": false,
+      "id": 7
     }
   ]
 }

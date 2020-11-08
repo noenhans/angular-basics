@@ -5,3 +5,19 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/regular';
+
+
+form {
+  margin-top: 50px;
+
+  .ng-invalid.ng-touched {
+    border-left: 5px solid red;
+  }
+
+  .alert {
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+  }
+
+}
