@@ -14,6 +14,10 @@ const routes: Routes = [
     loadChildren: () => import('./books/books.module').then(m => m.BooksModule),
   },
   {
+    path: 'login',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule),
+  },
+  {
     path: '**',
     component: NotFoundComponent
   },
