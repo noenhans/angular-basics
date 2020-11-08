@@ -9,10 +9,11 @@ import {BooksRoutingModule} from './books-routing.module';
 import {BooksResolver} from './books.resolver';
 import { NewBookComponent } from './new-book/new-book.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { FilterBooksPipe } from './filter-books.pipe';
 
 
 @NgModule({
-  declarations: [BooksListComponent, BookItemComponent, BooksOverviewComponent, BooksTableComponent, BooksTableRowComponent, NewBookComponent],
+  declarations: [BooksListComponent, BookItemComponent, BooksOverviewComponent, BooksTableComponent, BooksTableRowComponent, NewBookComponent, FilterBooksPipe],
   exports: [],
   imports: [
     CommonModule,
