@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-new-book',
@@ -8,16 +8,19 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class NewBookComponent implements OnInit {
 
-  bookForm: FormGroup = new FormGroup({
-    name: new FormControl(''),
-    author: new FormControl(''),
-    imageUrl: new FormControl(''),
-    isSoldOut: new FormControl(false),
-  });
+  bookForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private formBuilder: FormBuilder
+  ) { }
 
   ngOnInit(): void {
+    this.bookForm = this.formBuilder.group({
+      name: '',
+      author: '',
+      imageUrl: '',
+      isSoldOut: false
+    });
   }
 
   saveBook(): void {
