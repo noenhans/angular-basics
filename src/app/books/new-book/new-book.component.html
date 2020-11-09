@@ -4,21 +4,35 @@
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" formControlName="name">
+        <div class="alert alert-danger" *ngIf="bookForm.controls.name?.invalid && bookForm.controls.name?.touched">
+          <ng-container *ngIf="bookForm.controls.name?.errors?.required">
+            This field is required
+          </ng-container>
+          <ng-container *ngIf="bookForm.controls.name?.errors?.minlength">
+            This field is too short. Required: {{ bookForm.controls.name?.errors?.minlength.requiredLength }}, actual: {{ bookForm.controls.name?.errors?.minlength.actualLength }}
+          </ng-container>
+        </div>
       </div>
       <div class="form-group">
         <label for="author">Author</label>
         <input type="text" class="form-control" id="author" formControlName="author">
+        <div class="alert alert-danger" *ngIf="bookForm.controls.author?.invalid && bookForm.controls.author?.touched">
+          This field is required
+        </div>
       </div>
       <div class="form-group">
         <label for="imageUrl">Cover url</label>
         <input type="text" class="form-control" id="imageUrl" formControlName="imageUrl">
+        <div class="alert alert-danger" *ngIf="bookForm.controls.imageUrl?.invalid && bookForm.controls.imageUrl?.touched">
+          This field is invalid
+        </div>
       </div>
       <div class="form-group form-check">
         <input type="checkbox" class="form-check-input" id="isSoldOut" formControlName="isSoldOut">
         <label class="form-check-label" for="isSoldOut">Is sold out</label>
       </div>
       <a type="submit" class="btn btn-danger" routerLink="/books">Cancel</a>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Save</button>
     </form>
   </div>
 </div>

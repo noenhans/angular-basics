@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {BooksValidators} from '../books-validators';
 
 @Component({
   selector: 'app-new-book',
@@ -16,9 +17,9 @@ export class NewBookComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookForm = this.formBuilder.group({
-      name: '',
-      author: '',
-      imageUrl: '',
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      author: ['', Validators.required],
+      imageUrl: ['', BooksValidators.url()],
       isSoldOut: false
     });
   }
@@ -26,5 +27,6 @@ export class NewBookComponent implements OnInit {
   saveBook(): void {
     console.log(this.bookForm.value);
   }
+
 
 }
