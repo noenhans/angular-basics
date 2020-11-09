@@ -12,11 +12,19 @@
       </a>
     </div>
   </div>
-  <app-books-list *ngIf="viewMode === viewModeValues.GRID; else booksTable" [books]="books$ | async"></app-books-list>
+  <div class="row">
+    <div class="input-group col-lg-4 search__container">
+      <input type="text" class="form-control" placeholder="search..." [formControl]="searchControl">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+      </div>
+    </div>
+  </div>
+  <app-books-list *ngIf="viewMode === viewModeValues.GRID; else booksTable" [books]="books$ | async | filterBooks :searchedValue"></app-books-list>
 
 </div>
 
 <ng-template #booksTable>
-  <app-books-table [books]="books$ | async"></app-books-table>
+  <app-books-table [books]="books$ | async | filterBooks :searchedValue"></app-books-table>
 </ng-template>
 

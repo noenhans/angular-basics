@@ -2,8 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../book';
 import {ViewMode} from './view-mode';
 import {ActivatedRoute} from '@angular/router';
-import {pluck, switchMap, takeUntil} from 'rxjs/operators';
-import {combineLatest, Observable, Subject} from 'rxjs';
+import {debounceTime, distinctUntilChanged, pluck, takeUntil, tap} from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-books-overview',
@@ -13,12 +14,15 @@ import {combineLatest, Observable, Subject} from 'rxjs';
 })
 export class BooksOverviewComponent implements OnInit, OnDestroy {
   viewMode: 'table' | 'grid';
+  searchedValue = '';
 
   readonly viewModeValues = ViewMode;
 
   private destroy$ = new Subject();
 
   books$: Observable<Book[]>;
+
+  searchControl = new FormControl('');
 
   constructor(
     private activatedRoute: ActivatedRoute
@@ -32,6 +36,15 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
       pluck('viewMode'),
       takeUntil(this.destroy$)
     ).subscribe(viewMode => this.viewMode = viewMode);
+
+
+    this.searchControl.valueChanges
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        takeUntil(this.destroy$)
+      )
+      .subscribe(value => this.searchedValue = value);
   }
 
   ngOnDestroy(): void {

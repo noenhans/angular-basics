@@ -9,6 +9,7 @@ import {BooksRoutingModule} from './books-routing.module';
 import {BooksResolver} from './books.resolver';
 import { NewBookComponent } from './new-book/new-book.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { FilterBooksPipe } from './filter-books.pipe';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     BooksOverviewComponent,
     BooksTableComponent,
     BooksTableRowComponent,
-    NewBookComponent
+    NewBookComponent,
+    FilterBooksPipe
   ],
   exports: [],
   imports: [
