@@ -31,6 +31,7 @@ export class NewBookComponent implements OnInit {
       asyncValidators: this.booksAsyncValidators.bookAlreadyExists(),
       updateOn: 'blur'
     });
+
   }
 
   saveBook(): void {

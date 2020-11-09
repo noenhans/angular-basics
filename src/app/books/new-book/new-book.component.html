@@ -36,7 +36,7 @@
         <label class="form-check-label" for="isSoldOut">Is sold out</label>
       </div>
       <a type="submit" class="btn btn-danger" routerLink="/books">Cancel</a>
-      <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid">Save</button>
+      <button type="submit" class="btn btn-primary" [disabled]="bookForm.invalid && bookForm.pending">Save</button>
     </form>
   </div>
 </div>
