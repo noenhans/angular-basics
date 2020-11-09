@@ -7,10 +7,11 @@ import { BooksTableComponent } from './books-table/books-table.component';
 import { BooksTableRowComponent } from './books-table-row/books-table-row.component';
 import {BooksRoutingModule} from './books-routing.module';
 import {BooksResolver} from './books.resolver';
+import { NewBookComponent } from './new-book/new-book.component';
 
 
 @NgModule({
-  declarations: [BooksListComponent, BookItemComponent, BooksOverviewComponent, BooksTableComponent, BooksTableRowComponent],
+  declarations: [BooksListComponent, BookItemComponent, BooksOverviewComponent, BooksTableComponent, BooksTableRowComponent, NewBookComponent],
   exports: [],
   imports: [
     CommonModule,
