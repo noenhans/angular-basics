@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BooksValidators} from '../books-validators';
+import {BooksAsyncValidators} from '../books-async-validators';
 
 @Component({
   selector: 'app-new-book',
@@ -12,7 +13,8 @@ export class NewBookComponent implements OnInit {
   bookForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private booksAsyncValidators: BooksAsyncValidators
   ) { }
 
   ngOnInit(): void {
@@ -21,6 +23,9 @@ export class NewBookComponent implements OnInit {
       author: ['', Validators.required],
       imageUrl: ['', BooksValidators.url()],
       isSoldOut: false
+    }, {
+      asyncValidators: this.booksAsyncValidators.bookAlreadyExists(),
+      updateOn: 'blur'
     });
   }
 

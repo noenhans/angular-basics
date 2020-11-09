@@ -11,6 +11,10 @@
           <ng-container *ngIf="bookForm.controls.name?.errors?.minlength">
             This field is too short. Required: {{ bookForm.controls.name?.errors?.minlength.requiredLength }}, actual: {{ bookForm.controls.name?.errors?.minlength.actualLength }}
           </ng-container>
+
+        </div>
+        <div class="alert alert-danger" *ngIf="bookForm.controls.author?.touched && bookForm.controls.name?.touched && bookForm.errors?.bookExists">
+            Books already exists
         </div>
       </div>
       <div class="form-group">
