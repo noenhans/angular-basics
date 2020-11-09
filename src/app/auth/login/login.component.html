@@ -3,9 +3,14 @@
     <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="login(loginForm.value)">
       <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" (ngModelChange)="logEmail($event)" required>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" (ngModelChange)="logEmail($event)" required appEmailDomain>
         <div class="alert alert-danger" *ngIf="loginForm.controls.email?.invalid && loginForm.controls.email?.touched">
-          This field is required
+          <ng-container *ngIf="loginForm.controls?.email?.errors?.required">
+            This field is required
+          </ng-container>
+          <ng-container *ngIf="loginForm.controls?.email?.errors?.emailDomain">
+            Email is invalid
+          </ng-container>
         </div>
       </div>
       <div class="form-group">
@@ -15,7 +20,7 @@
           This field is required
         </div>
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
     </form>
   </div>
 </div>
