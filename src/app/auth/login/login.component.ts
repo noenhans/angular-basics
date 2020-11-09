@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
 interface LoginData {
   email: string;
@@ -10,14 +11,15 @@ interface LoginData {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements AfterViewInit {
 
   email = '';
   password = '';
 
-  constructor() { }
+  @ViewChild('loginForm') loginForm: NgForm;
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    console.log(this.loginForm);
   }
 
   login(formValue: LoginData): void {
