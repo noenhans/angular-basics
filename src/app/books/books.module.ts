@@ -8,14 +8,23 @@ import { BooksTableRowComponent } from './books-table-row/books-table-row.compon
 import {BooksRoutingModule} from './books-routing.module';
 import {BooksResolver} from './books.resolver';
 import { NewBookComponent } from './new-book/new-book.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [BooksListComponent, BookItemComponent, BooksOverviewComponent, BooksTableComponent, BooksTableRowComponent, NewBookComponent],
+  declarations: [
+    BooksListComponent,
+    BookItemComponent,
+    BooksOverviewComponent,
+    BooksTableComponent,
+    BooksTableRowComponent,
+    NewBookComponent
+  ],
   exports: [],
   imports: [
     CommonModule,
-    BooksRoutingModule
+    BooksRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [
     BooksResolver
