@@ -48,6 +48,13 @@
       "imageUrl": "http://ecsmedia.pl/c/w-zywe-oczy-w-iext52942504.jpg",
       "isSoldOut": false,
       "id": 7
+    },
+    {
+      "name": "Chłopiec z lasu",
+      "author": "Harlan Coben",
+      "imageUrl": "http://ecsmedia.pl/c/chlopiec-z-lasu-w-iext65251791.jpg",
+      "isSoldOut": false,
+      "id": 8
     }
   ]
 }

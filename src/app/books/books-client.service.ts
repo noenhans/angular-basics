@@ -15,4 +15,8 @@ export class BooksClientService {
   getBooks(): Observable<Book[]> {
     return this.httpClient.get<Book[]>('api/books');
   }
+
+  saveBooks(book: Book): Observable<Book> {
+    return this.httpClient.post<Book>('api/books', book);
+  }
 }

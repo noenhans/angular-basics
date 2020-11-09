@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BooksValidators} from '../books-validators';
 import {BooksAsyncValidators} from '../books-async-validators';
+import {BooksClientService} from '../books-client.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-book',
@@ -14,7 +16,9 @@ export class NewBookComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private booksAsyncValidators: BooksAsyncValidators
+    private booksAsyncValidators: BooksAsyncValidators,
+    private booksClient: BooksClientService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,7 +34,11 @@ export class NewBookComponent implements OnInit {
   }
 
   saveBook(): void {
-    console.log(this.bookForm.value);
+    if (this.bookForm?.valid) {
+      this.booksClient.saveBooks(this.bookForm.value).subscribe(() => {
+        this.router.navigate(['/books']);
+      });
+    }
   }
 
 
