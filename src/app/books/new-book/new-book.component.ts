@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { BooksValidators } from '../books-validators';
 import {BooksClientService} from '../books-client.service';
 import {Router} from '@angular/router';
+import {NewBookAsyncValidator} from '../new-book-async-validator';
 
 @Component({
   selector: 'app-new-book',
@@ -16,7 +17,8 @@ export class NewBookComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly booksClient: BooksClientService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly newBookValidator: NewBookAsyncValidator
   ) { }
 
   ngOnInit(): void {
@@ -25,6 +27,9 @@ export class NewBookComponent implements OnInit {
       author: ['', Validators.required],
       imageUrl: ['', BooksValidators.url()],
       isSoldOut: false
+    }, {
+      asyncValidators: this.newBookValidator.validate(),
+      updateOn: 'blur'
     });
   }
 
