@@ -16,6 +16,7 @@ import {BooksClientService} from '../books-client.service';
 export class BooksOverviewComponent implements OnInit, OnDestroy {
   viewMode: 'table' | 'grid';
   searchedValue = '';
+  editMode = false;
 
   readonly viewModeValues = ViewMode;
 
@@ -59,8 +60,13 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
   }
 
   onUpdateBooks(books: Book[]): void {
-    const updatedBooks$ = this.booksClient.updateBooks(books);
-    this.books$ = updatedBooks$.pipe(switchMap(() => this.booksClient.getBooks()));
-    updatedBooks$.subscribe();
+    this.booksClient.updateBooks(books).subscribe(() => {
+      this.books$ = this.booksClient.getBooks();
+      this.onToogleEditMode();
+    });
+  }
+
+  onToogleEditMode(): void {
+    this.editMode = !this.editMode;
   }
 }

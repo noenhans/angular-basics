@@ -22,15 +22,18 @@ export class BooksTableComponent  {
 
   @Output() updateBooks = new EventEmitter<Book[]>();
 
-  editMode = false;
+  @Output() toogleEditMode = new EventEmitter<void>();
+
+  @Input() editMode: boolean;
+
   booksForm: FormArray;
 
-  toogleEditMode(): void {
+  onToogleEditMode(): void {
     if (this.editMode) {
       this.booksForm.reset();
       this.booksForm.setValue(this.books);
     }
-    this.editMode = !this.editMode;
+    this.toogleEditMode.emit();
   }
 
   private createBooksForm(books: Book[]): void {
@@ -50,7 +53,6 @@ export class BooksTableComponent  {
     if (this.booksForm.valid) {
       const booksToSave = this.booksForm.value?.map((book, index) => ({ ...this.books[index], ...book }));
       this.updateBooks.emit(booksToSave);
-      this.editMode = false;
     }
   }
 }

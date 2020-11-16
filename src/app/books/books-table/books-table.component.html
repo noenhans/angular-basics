@@ -1,5 +1,5 @@
 <div class="table-toolbar">
-  <button type="button" class="btn btn-primary" (click)="toogleEditMode()">
+  <button type="button" class="btn btn-primary" (click)="onToogleEditMode()">
     <i class="far fa-edit"></i>
     Edit
   </button>
@@ -17,7 +17,7 @@
   </tbody>
 </table>
 <div class="table-toolbar" *ngIf="editMode">
-  <button type="button" class="btn btn-danger" (click)="toogleEditMode()">
+  <button type="button" class="btn btn-danger" (click)="onToogleEditMode()">
     <i class="far fa-edit"></i>
     Cancel
   </button>
