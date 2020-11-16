@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {Component} from '@angular/core';
+import {AuthClientService} from '../auth-client.service';
+import {Router} from '@angular/router';
 
 interface LoginData {
   email: string;
@@ -11,23 +12,24 @@ interface LoginData {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements AfterViewInit {
+export class LoginComponent {
 
   email = '';
   password = '';
 
-  @ViewChild('loginForm') loginForm: NgForm;
-
-  ngAfterViewInit(): void {
-    console.log(this.loginForm);
+  constructor(
+    private authClient: AuthClientService,
+    private router: Router
+  ) {
   }
+
 
   login(formValue: LoginData): void {
-    console.log(formValue);
-  }
-
-  logEmail(email: string): void {
-    console.log(email);
+    this.authClient.login(formValue.email, formValue.password).subscribe(isLogged => {
+      if (isLogged) {
+        this.router.navigate(['/']);
+      }
+    });
   }
 
 }

@@ -6,6 +6,7 @@ import {debounceTime, distinctUntilChanged, pluck, switchMap, takeUntil} from 'r
 import {Observable, Subject} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {BooksClientService} from '../books-client.service';
+import {AuthClientService} from '../../auth/auth-client.service';
 
 @Component({
   selector: 'app-books-overview',
@@ -22,16 +23,19 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   books$: Observable<Book[]>;
+  isLogged$: Observable<boolean>;
 
   searchControl = new FormControl('');
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private booksClient: BooksClientService
+    private booksClient: BooksClientService,
+    private authClient: AuthClientService
   ) {
   }
 
   ngOnInit(): void {
+    this.isLogged$ = this.authClient.isLogged();
     this.books$ = this.activatedRoute.data.pipe(pluck('books'));
 
     this.activatedRoute.params.pipe(
@@ -64,4 +68,7 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
     });
   }
 
+  logout() {
+    this.authClient.logout();
+  }
 }

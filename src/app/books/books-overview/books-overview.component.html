@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <h1 class="display-4 col-lg-8">Books overview</h1>
-    <div class="col-lg-4 btn-header-group">
-      <a type="button" class="btn btn-success" routerLink="../book/new">Add new book</a>
+    <h1 class="display-4 col-lg-7">Books overview</h1>
+    <div class="col-lg-5 btn-header-group">
+      <a type="button" class="btn btn-success" routerLink="../book/new" *appPermitted="'newBook'">Add new book</a>
       <a type="button" class="btn btn-info" [routerLink]="['..', nextViewMode]">
         <i class="fas" [ngClass]="{
           'fa-table': viewMode === viewModeValues.GRID,
@@ -10,6 +10,10 @@
         }"></i>
         Toogle view
       </a>
+      <button class="btn btn-danger" *ngIf="isLogged$ | async; else loginBtn" (click)="logout()">
+        <i class="fas fa-power-off"></i>
+        Logout
+      </button>
     </div>
   </div>
   <div class="row">
@@ -29,5 +33,12 @@
     [books]="books$ | async | filterBooks :searchedValue"
     (updateBooks)="onUpdateBooks($event)">
   </app-books-table>
+</ng-template>
+
+<ng-template #loginBtn>
+  <a class="btn btn-success" routerLink="/login">
+    <i class="fas fa-sign-in-alt"></i>
+    Login
+  </a>
 </ng-template>
 

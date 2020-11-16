@@ -23,8 +23,6 @@ export class BooksTableComponent  {
 
   @Output() updateBooks = new EventEmitter<Book[]>();
 
-  @Output() toogleEditMode = new EventEmitter<void>();
-
   editMode = false;
 
   booksForm: FormArray;
@@ -32,7 +30,7 @@ export class BooksTableComponent  {
   onToogleEditMode(): void {
     if (this.editMode) {
       this.booksForm.reset();
-      this.booksForm.setValue(this.books);
+      this.booksForm.setValue(this.books.map(({ id, isSoldOut, ...book}) => book));
     }
     this.editMode = !this.editMode;
   }
@@ -40,7 +38,7 @@ export class BooksTableComponent  {
   private createBooksForm(books: Book[]): void {
     if (books?.length) {
       const bookFormGroups = this.books.map(book => new FormGroup({
-        imageUrl: new FormControl(book.imageUrl, BooksValidators.url),
+        imageUrl: new FormControl(book.imageUrl, BooksValidators.url()),
         name: new FormControl(book.name, Validators.required),
         author: new FormControl(book.author, Validators.required)
       }));

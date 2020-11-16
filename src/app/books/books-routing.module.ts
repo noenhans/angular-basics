@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {BooksOverviewComponent} from './books-overview/books-overview.component';
 import {BooksResolver} from './books.resolver';
 import {NewBookComponent} from './new-book/new-book.component';
+import {IsPermittedGuard} from '../auth/is-permitted.guard';
 
 const routes: Routes = [
   {
@@ -16,7 +17,9 @@ const routes: Routes = [
   },
   {
     path: 'book/new',
-    component: NewBookComponent
+    component: NewBookComponent,
+    canActivate: [IsPermittedGuard],
+    data: { permitted: 'newBook' }
   }
 ];
 

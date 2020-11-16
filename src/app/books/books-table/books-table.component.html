@@ -1,5 +1,5 @@
 <div class="table-toolbar">
-  <button type="button" class="btn btn-primary" (click)="onToogleEditMode()">
+  <button type="button" class="btn btn-primary" (click)="onToogleEditMode()" *appPermitted="'editBook'">
     <i class="far fa-edit"></i>
     Edit
   </button>
@@ -18,11 +18,9 @@
 </table>
 <div class="table-toolbar" *ngIf="editMode">
   <button type="button" class="btn btn-danger" (click)="onToogleEditMode()">
-    <i class="far fa-edit"></i>
     Cancel
   </button>
-  <button type="button" class="btn btn-success" (click)="onSaveBooks()">
-    <i class="far fa-edit"></i>
+  <button type="button" class="btn btn-success" (click)="onSaveBooks()" [disabled]="!booksForm.valid">
     Save
   </button>
 </div>

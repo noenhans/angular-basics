@@ -56,5 +56,16 @@
       "isSoldOut": false,
       "id": 8
     }
+  ],
+  "users": [
+    {
+      "email": "patrycja.stepien@capgemini.com",
+      "password": "patrycja",
+      "permissions": ["newBook", "editBook"]
+    },
+    {
+      "email": "jan.dombek@capgemini.com",
+      "password": "jan"
+    }
   ]
 }

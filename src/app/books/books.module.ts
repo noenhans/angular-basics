@@ -10,6 +10,7 @@ import {BooksResolver} from './books.resolver';
 import { NewBookComponent } from './new-book/new-book.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FilterBooksPipe } from './filter-books.pipe';
+import {AuthModule} from '../auth/auth.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FilterBooksPipe } from './filter-books.pipe';
   imports: [
     CommonModule,
     BooksRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule
   ],
   providers: [
     BooksResolver

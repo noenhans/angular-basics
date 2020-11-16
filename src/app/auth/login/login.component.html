@@ -3,7 +3,7 @@
     <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="login(loginForm.value)">
       <div class="form-group">
         <label for="email">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" (ngModelChange)="logEmail($event)" required appEmailDomain>
+        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required appEmailDomain>
         <div class="alert alert-danger" *ngIf="loginForm.controls.email?.invalid && loginForm.controls.email?.touched">
           <ng-container *ngIf="loginForm.controls?.email?.errors?.required">
             This field is required
