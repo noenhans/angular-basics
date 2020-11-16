@@ -25,6 +25,6 @@
 </div>
 
 <ng-template #booksTable>
-  <app-books-table [books]="books$ | async | filterBooks :searchedValue"></app-books-table>
+  <app-books-table [books]="books$ | async | filterBooks :searchedValue" (updateBooks)="onUpdateBooks($event)"></app-books-table>
 </ng-template>
 
