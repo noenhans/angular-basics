@@ -13,6 +13,7 @@ export class BooksTableComponent  {
 
   @Input() set books(books: Book[]) {
     this._books = books;
+    this.editMode = false;
     this.createBooksForm(books);
   }
 
@@ -24,7 +25,7 @@ export class BooksTableComponent  {
 
   @Output() toogleEditMode = new EventEmitter<void>();
 
-  @Input() editMode: boolean;
+  editMode = false;
 
   booksForm: FormArray;
 
@@ -33,7 +34,7 @@ export class BooksTableComponent  {
       this.booksForm.reset();
       this.booksForm.setValue(this.books);
     }
-    this.toogleEditMode.emit();
+    this.editMode = !this.editMode;
   }
 
   private createBooksForm(books: Book[]): void {

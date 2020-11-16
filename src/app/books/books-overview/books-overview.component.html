@@ -27,9 +27,7 @@
 <ng-template #booksTable>
   <app-books-table
     [books]="books$ | async | filterBooks :searchedValue"
-    [editMode]="editMode"
-    (updateBooks)="onUpdateBooks($event)"
-    (toogleEditMode)="onToogleEditMode()">
+    (updateBooks)="onUpdateBooks($event)">
   </app-books-table>
 </ng-template>
 
