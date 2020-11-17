@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="alert alert-danger" role="alert" *ngIf="isLoginError">
+    Something went wrong. Username or password is invalid.
+  </div>
   <div class="col-lg-6 offset-lg-3">
     <form #loginForm="ngForm" autocomplete="off" (ngSubmit)="login(loginForm.value)">
       <div class="form-group">
