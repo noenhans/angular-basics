@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Book} from '../book';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BooksValidators} from '../books-validators';
@@ -13,6 +13,7 @@ export class BooksTableComponent {
 
   @Input() set books(books: Book[]) {
     this._books = books;
+    this.editMode = false;
     this.initForm(books);
   }
 
@@ -20,11 +21,17 @@ export class BooksTableComponent {
     return this._books;
   }
 
+  @Output() updateBook = new EventEmitter<Book[]>();
+
   editMode = false;
 
   booksForm: FormArray;
 
   toogleEditMode(): void {
+    if (this.editMode) {
+      this.booksForm.reset();
+      this.booksForm.setValue(this.books);
+    }
     this.editMode = !this.editMode;
   }
 
@@ -33,11 +40,20 @@ export class BooksTableComponent {
       this.booksForm = new FormArray([]);
     } else {
       const bookFormGroups = books.map(book => new FormGroup({
+        id: new FormControl(book.id),
         imageUrl: new FormControl(book.imageUrl, BooksValidators.url()),
         name: new FormControl(book.name, Validators.required),
-        author: new FormControl(book.author, Validators.required)
+        author: new FormControl(book.author, Validators.required),
+        isSoldOut: new FormControl(book.isSoldOut)
       }));
       this.booksForm = new FormArray(bookFormGroups);
     }
   }
+
+  updateBooks(): void {
+    if (this.booksForm.valid) {
+      this.updateBook.emit(this.booksForm.value);
+    }
+  }
 }
+

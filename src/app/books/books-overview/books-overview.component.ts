@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {debounceTime, distinctUntilChanged, pluck, takeUntil, tap} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 import {FormControl} from '@angular/forms';
+import {BooksClientService} from '../books-client.service';
 
 @Component({
   selector: 'app-books-overview',
@@ -25,7 +26,8 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
   searchControl = new FormControl('');
 
   constructor(
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private booksClient: BooksClientService
   ) {
   }
 
@@ -54,5 +56,11 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
 
   get nextViewMode(): string {
     return this.viewMode === ViewMode.GRID ? ViewMode.TABLE : ViewMode.GRID;
+  }
+
+  onUpdateBooks(books: Book[]): void {
+    this.booksClient.updateBooks(books).subscribe(() => {
+      this.books$ = this.booksClient.getBooks();
+    });
   }
 }

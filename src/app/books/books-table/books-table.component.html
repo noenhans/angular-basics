@@ -16,3 +16,11 @@
     <tr bookitem *ngFor="let book of books; let i = index" [book]="book" [editMode]="editMode" [bookForm]="booksForm.at(i)"></tr>
   </tbody>
 </table>
+<div class="table-toolbar" *ngIf="editMode">
+  <button class="btn btn-danger" (click)="toogleEditMode()">
+    Cancel
+  </button>
+  <button class="btn btn-success" (click)="updateBooks()" [disabled]="booksForm.invalid">
+    Save
+  </button>
+</div>

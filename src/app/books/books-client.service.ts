@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {forkJoin, Observable} from 'rxjs';
 import {Book} from './book';
 
 @Injectable({
@@ -18,5 +18,10 @@ export class BooksClientService {
 
   saveBooks(book: Book): Observable<Book> {
     return this.httpClient.post<Book>('api/books', book);
+  }
+
+  updateBooks(books: Book[]): Observable<Book[]> {
+    const updateRequests = books.map(book => this.httpClient.patch<Book>(`api/books/${book.id}`, book));
+    return forkJoin(updateRequests);
   }
 }
