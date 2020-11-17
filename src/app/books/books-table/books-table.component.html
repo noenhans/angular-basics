@@ -1,5 +1,5 @@
 <div class="table-toolbar">
-  <button class="btn btn-primary" (click)="toogleEditMode()">
+  <button class="btn btn-primary" (click)="toogleEditMode()" *appPermitted="'editBooks'">
     <i class="far fa-edit"></i>
     Toogle edit mode
   </button>

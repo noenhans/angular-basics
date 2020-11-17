@@ -2,7 +2,7 @@
   <div class="row">
     <h1 class="display-4 col-lg-7">Books overview</h1>
     <div class="col-lg-5 btn-header-group">
-      <a type="button" class="btn btn-success" routerLink="../book/new">Add new book</a>
+      <a type="button" class="btn btn-success" routerLink="../book/new" *appPermitted="'newBook'">Add new book</a>
       <a type="button" class="btn btn-info" [routerLink]="['..', nextViewMode]">
         <i class="fas" [ngClass]="{
           'fa-table': viewMode === viewModeValues.GRID,
