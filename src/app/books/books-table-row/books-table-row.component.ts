@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Book} from '../book';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'tr[bookitem]',
@@ -9,5 +10,5 @@ import {Book} from '../book';
 export class BooksTableRowComponent  {
   @Input() book: Book;
   @Input() editMode: boolean;
-
+  @Input() bookForm: FormGroup;
 }

@@ -8,12 +8,12 @@
 
 <ng-template #editModeTemplate>
   <td>
-    <input class="form-control" type="text" placeholder="Image url">
+    <input class="form-control" type="text" [formControl]="bookForm.controls.imageUrl" placeholder="Image url">
   </td>
   <td>
-    <input class="form-control" type="text" placeholder="Name">
+    <input class="form-control" type="text" [formControl]="bookForm.controls.name" placeholder="Name">
   </td>
   <td>
-    <input class="form-control" type="text" placeholder="Author">
+    <input class="form-control" type="text" [formControl]="bookForm.controls.author" placeholder="Author">
   </td>
 </ng-template>

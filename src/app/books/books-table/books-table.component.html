@@ -13,6 +13,6 @@
   </tr>
   </thead>
   <tbody>
-    <tr bookitem *ngFor="let book of books" [book]="book" [editMode]="editMode"></tr>
+    <tr bookitem *ngFor="let book of books; let i = index" [book]="book" [editMode]="editMode" [bookForm]="booksForm.at(i)"></tr>
   </tbody>
 </table>
