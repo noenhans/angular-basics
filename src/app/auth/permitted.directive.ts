@@ -17,6 +17,8 @@ export class PermittedDirective implements OnDestroy {
   ) { }
 
   @Input() set appPermitted(persmission: string) {
+    this.destroy$.next();
+
     if (!persmission) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     }
