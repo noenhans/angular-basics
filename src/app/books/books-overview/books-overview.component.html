@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <h1 class="display-4 col-lg-8">Books overview</h1>
-    <div class="col-lg-4 btn-header-group">
+    <h1 class="display-4 col-lg-7">Books overview</h1>
+    <div class="col-lg-5 btn-header-group">
       <a type="button" class="btn btn-success" routerLink="../book/new">Add new book</a>
       <a type="button" class="btn btn-info" [routerLink]="['..', nextViewMode]">
         <i class="fas" [ngClass]="{
@@ -10,6 +10,7 @@
         }"></i>
         Toogle view
       </a>
+      <a type="button" class="btn btn-danger" *ngIf="isLogged$ | async; else loginBtn" (click)="logout()">Logout</a>
     </div>
   </div>
   <div class="row">
@@ -26,5 +27,9 @@
 
 <ng-template #booksTable>
   <app-books-table [books]="books$ | async | filterBooks :searchedValue" (updateBook)="onUpdateBooks($event)"></app-books-table>
+</ng-template>
+
+<ng-template #loginBtn>
+  <a type="button" class="btn btn-success" routerLink="/login">Login</a>
 </ng-template>
 

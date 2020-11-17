@@ -33,6 +33,20 @@ export class AuthClientService {
     window.localStorage.removeItem(this.LOGGED_USER);
   }
 
+  isLogged(): Observable<boolean> {
+    return this.user$.pipe(map(user => !!user));
+  }
+
+  isUserPermitted(persmission: string): Observable<boolean> {
+    return this.user$.pipe(map(user => {
+      if (!user || !user.permissions?.length) {
+        return false;
+      }
+
+      return user.permissions.includes(persmission);
+    }));
+  }
+
   private getUserFromLocalStorage(): User {
     const storedValue = window.localStorage.getItem(this.LOGGED_USER);
     const user: User = storedValue && JSON.parse(storedValue);
