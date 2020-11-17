@@ -9,4 +9,9 @@ import {Book} from '../book';
 export class BooksTableComponent {
   @Input() books: Book[];
 
+  editMode = false;
+
+  toogleEditMode(): void {
+    this.editMode = !this.editMode;
+  }
 }

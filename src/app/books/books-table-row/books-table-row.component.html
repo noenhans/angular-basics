@@ -1,5 +1,19 @@
-<td>
-  <img [src]="book?.imageUrl">
-</td>
-<td>{{ book?.name }}</td>
-<td>{{ book?.author }}</td>
+<ng-container *ngIf="!editMode; else editModeTemplate">
+  <td>
+    <img [src]="book?.imageUrl">
+  </td>
+  <td>{{ book?.name }}</td>
+  <td>{{ book?.author }}</td>
+</ng-container>
+
+<ng-template #editModeTemplate>
+  <td>
+    <input class="form-control" type="text" placeholder="Image url">
+  </td>
+  <td>
+    <input class="form-control" type="text" placeholder="Name">
+  </td>
+  <td>
+    <input class="form-control" type="text" placeholder="Author">
+  </td>
+</ng-template>

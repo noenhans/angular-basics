@@ -8,5 +8,6 @@ import {Book} from '../book';
 })
 export class BooksTableRowComponent  {
   @Input() book: Book;
+  @Input() editMode: boolean;
 
 }

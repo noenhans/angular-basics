@@ -1,0 +1,9 @@
+.table-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+
+  button, a {
+    margin-left: 5px;
+  }
+}
