@@ -12,9 +12,9 @@ export class BooksTableComponent {
   private _books: Book[];
 
   @Input() set books(books: Book[]) {
-    this._books = books;
     this.editMode = false;
     this.initForm(books);
+    this._books = books;
   }
 
   get books(): Book[] {
