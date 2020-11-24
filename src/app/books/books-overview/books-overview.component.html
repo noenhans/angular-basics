@@ -1,32 +1,44 @@
-  <div class="row">
-    <h1 class="display-4 col-lg-7">Books overview</h1>
-    <div class="col-lg-5 btn-header-group">
-      <a type="button" class="btn btn-success" routerLink="../book/new" *appPermitted="'newBook'">Add new book</a>
-      <a type="button" class="btn btn-info" [routerLink]="['..', nextViewMode]">
-        <i class="fas" [ngClass]="{
+<div class="row">
+  <h1 class="display-4 col-lg-7">Books overview</h1>
+  <div class="col-lg-5 btn-header-group">
+    <a type="button" class="btn btn-success" routerLink="../book/new" *appPermitted="'newBook'">Add new book</a>
+    <a type="button" class="btn btn-info" [routerLink]="['..', nextViewMode]">
+      <i class="fas" [ngClass]="{
           'fa-table': viewMode === viewModeValues.GRID,
           'fa-th': viewMode === viewModeValues.TABLE
         }"></i>
-        Toogle view
-      </a>
-      <a type="button" class="btn btn-danger" *ngIf="isLogged$ | async; else loginBtn" (click)="logout()">Logout</a>
+      Toogle view
+    </a>
+    <a type="button" class="btn btn-danger" *ngIf="isLogged$ | async; else loginBtn" (click)="logout()">Logout</a>
+  </div>
+</div>
+<div class="row">
+  <div class="input-group col-lg-4 input__container">
+    <input type="text" class="form-control" placeholder="search..." [formControl]="searchControl">
+    <div class="input-group-prepend">
+      <span class="input-group-text"><i class="fas fa-search"></i></span>
     </div>
   </div>
-  <div class="row">
-    <div class="input-group col-lg-4 search__container">
-      <input type="text" class="form-control" placeholder="search..." [formControl]="searchControl">
-      <div class="input-group-prepend">
-        <span class="input-group-text"><i class="fas fa-search"></i></span>
-      </div>
-    </div>
+  <div class="col-lg-4 input__container">
+    <app-dropdown
+      [items]="booksItem$ | async"
+    ></app-dropdown>
   </div>
-  <app-books-list *ngIf="viewMode === viewModeValues.GRID; else booksTable" [books]="books$ | async | filterBooks :searchedValue"></app-books-list>
+</div>
+<app-books-list *ngIf="viewMode === viewModeValues.GRID; else booksTable"
+                [books]="books$ | async | filterBooks :searchedValue"></app-books-list>
 
 <ng-template #booksTable>
-  <app-books-table [books]="books$ | async | filterBooks :searchedValue" (updateBook)="onUpdateBooks($event)"></app-books-table>
+  <app-books-table [books]="books$ | async | filterBooks :searchedValue"
+                   (updateBook)="onUpdateBooks($event)"></app-books-table>
 </ng-template>
 
 <ng-template #loginBtn>
   <a type="button" class="btn btn-success" routerLink="/login">Login</a>
+</ng-template>
+
+<ng-template #dropdownItemTemplate let-item>
+  <span>{{ item.value }}</span>
+  <img [src]="item.previewImg" class="img-thumbnail">
 </ng-template>
 

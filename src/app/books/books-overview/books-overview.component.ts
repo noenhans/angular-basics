@@ -2,11 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../book';
 import {ViewMode} from './view-mode';
 import {ActivatedRoute} from '@angular/router';
-import {debounceTime, distinctUntilChanged, pluck, takeUntil, tap} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, pluck, takeUntil, tap} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {BooksClientService} from '../books-client.service';
 import {AuthClientService} from '../../auth/auth-client.service';
+import {DropdownItem} from '../../shared/dropdown/dropdown-item';
 
 @Component({
   selector: 'app-books-overview',
@@ -23,6 +24,8 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   books$: Observable<Book[]>;
+
+  booksItem$: Observable<DropdownItem[]>;
   isLogged$: Observable<boolean>;
 
   searchControl = new FormControl('');
@@ -36,6 +39,11 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.books$ = this.activatedRoute.data.pipe(pluck('books'));
+    this.booksItem$ = this.books$.pipe(map(books => books?.map(book => ({
+      key: book.id,
+      value: book.name,
+      previewImg: book.imageUrl
+    }))));
     this.isLogged$ = this.authClient.isLogged();
 
     this.activatedRoute.params.pipe(
