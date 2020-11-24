@@ -1,9 +1,9 @@
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="toogleDropdown()">
+  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="toogleDropdown()" [disabled]="isDisabled">
     {{ selectedItem?.value || 'Select...' }}
   </button>
   <div class="dropdown-menu" *ngIf="isOpened">
-    <div class="dropdown-item" (click)="select(item)" *ngFor="let item of items">
+    <div class="dropdown-item" (click)="select(item)" *ngFor="let item of items" [class.selected]="item === selectedItem">
       <ng-container *ngTemplateOutlet="dropdownItemTemplate || dropdownItemDefaultTemplate; context: { $implicit: item }">
       </ng-container>
     </div>

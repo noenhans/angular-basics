@@ -21,6 +21,7 @@
   </div>
   <div class="col-lg-4 input__container">
     <app-dropdown
+      [formControl]="bookControl"
       [items]="booksItem$ | async"
     ></app-dropdown>
   </div>

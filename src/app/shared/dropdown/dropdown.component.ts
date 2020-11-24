@@ -1,29 +1,57 @@
-import {Component, Input, OnInit, TemplateRef} from '@angular/core';
+import {Component, forwardRef, Input, TemplateRef} from '@angular/core';
 import {DropdownItem} from './dropdown-item';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
   selector: 'app-dropdown',
   templateUrl: './dropdown.component.html',
-  styleUrls: ['./dropdown.component.scss']
+  styleUrls: ['./dropdown.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => DropdownComponent),
+    multi: true
+  }]
 })
-export class DropdownComponent implements OnInit {
+export class DropdownComponent implements ControlValueAccessor {
   @Input() dropdownItemTemplate: TemplateRef<any>;
   @Input() items: DropdownItem[];
 
   selectedItem: DropdownItem;
   isOpened = false;
+  isDisabled = false;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  private value: any;
+  private onChanged = (value: any) => {};
+  private onTouched = () => {};
 
   toogleDropdown(): void {
-    this.isOpened = !this.isOpened;
+    if (!this.isDisabled) {
+      this.isOpened = !this.isOpened;
+      this.onTouched();
+    }
   }
 
   select(item: DropdownItem): void {
+    this.value = item.key;
+    this.onChanged(this.value);
     this.selectedItem = item;
     this.isOpened = false;
   }
+
+  writeValue(value: any): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChanged = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.isDisabled = isDisabled;
+  }
+
 }

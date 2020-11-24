@@ -29,6 +29,7 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
   isLogged$: Observable<boolean>;
 
   searchControl = new FormControl('');
+  bookControl = new FormControl();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,6 +46,8 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
       previewImg: book.imageUrl
     }))));
     this.isLogged$ = this.authClient.isLogged();
+
+    this.bookControl.valueChanges.subscribe(value => console.log(value));
 
     this.activatedRoute.params.pipe(
       pluck('viewMode'),

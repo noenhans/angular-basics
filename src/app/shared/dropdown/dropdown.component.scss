@@ -1,9 +1,15 @@
 .dropdown-menu {
   display: block;
 
-  .img-thumbnail {
-    height: 50px;
-    margin-right: 10px;
+  .dropdown-item {
+    .img-thumbnail {
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    &.selected {
+      background-color: lightgray;
+    }
   }
 }
 
