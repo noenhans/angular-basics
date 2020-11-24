@@ -1,0 +1,18 @@
+div {
+  i {
+    color: darkgoldenrod;
+    cursor: pointer;
+  }
+
+  &.disabled {
+    i {
+      color: grey;
+    }
+  }
+
+  &.readonly {
+    i {
+      cursor: default;
+    }
+  }
+}

@@ -1,0 +1,7 @@
+<div [class.readonly]="readonly || disabled" [class.disabled]="disabled">
+  <i class="fa-star"
+     *ngFor="let star of stars"
+     (click)="toogleStar(star)"
+     [ngClass]="{ 'far': star >= value, 'fas': star < value  }"
+  ></i>
+</div>
