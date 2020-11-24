@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class SpinnerService {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.toogleSpinner(true);
-      } else if (event instanceof NavigationEnd) {
+      } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
         this.toogleSpinner(false);
       }
     });
