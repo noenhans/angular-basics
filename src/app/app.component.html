@@ -1,1 +1,8 @@
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="row">
+    <div class="alert alert-danger col-lg-12" role="alert" *ngFor="let error of errors$ | async">
+      {{ error }}
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,4 +1,3 @@
-<div class="container">
   <div class="row">
     <h1 class="display-4 col-lg-7">Books overview</h1>
     <div class="col-lg-5 btn-header-group">
@@ -22,8 +21,6 @@
     </div>
   </div>
   <app-books-list *ngIf="viewMode === viewModeValues.GRID; else booksTable" [books]="books$ | async | filterBooks :searchedValue"></app-books-list>
-
-</div>
 
 <ng-template #booksTable>
   <app-books-table [books]="books$ | async | filterBooks :searchedValue" (updateBook)="onUpdateBooks($event)"></app-books-table>
