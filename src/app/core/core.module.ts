@@ -4,13 +4,16 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ErrorHandlingInterceptor} from './error-handling.interceptor';
 import {CorrelationIdInterceptor} from './correlation-id.interceptor';
+import {OverlayModule} from '@angular/cdk/overlay';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
 @NgModule({
   declarations: [NotFoundComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    OverlayModule
   ],
   providers: [
     {
@@ -24,6 +27,12 @@ import {CorrelationIdInterceptor} from './correlation-id.interceptor';
       multi: true
     }
   ],
-  exports: [NotFoundComponent]
+  exports: [
+    NotFoundComponent,
+    OverlayModule
+  ],
+  entryComponents: [
+    SpinnerComponent
+  ]
 })
 export class CoreModule { }
