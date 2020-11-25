@@ -1,0 +1,15 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" (click)="toogle()" [disabled]="isDisabled">
+    {{ selectedItem?.value || 'Select...' }}
+  </button>
+  <div class="dropdown-menu" *ngIf="isOpen">
+    <div class="dropdown-item" *ngFor="let item of items" (mousedown)="select(item)" [class.selected]="item === selectedItem">
+      <ng-container *ngTemplateOutlet="itemTemplate || itemDefaultTemplate; context: { $implicit: item }"></ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #itemDefaultTemplate let-item>
+  <img [src]="item.img" class="img-thumbnail">
+  <span>{{ item.value }}</span>
+</ng-template>

@@ -2,11 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Book} from '../book';
 import {ViewMode} from './view-mode';
 import {ActivatedRoute} from '@angular/router';
-import {debounceTime, distinctUntilChanged, pluck, takeUntil, tap} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, pluck, takeUntil} from 'rxjs/operators';
 import {Observable, Subject} from 'rxjs';
 import {FormControl} from '@angular/forms';
 import {BooksClientService} from '../books-client.service';
 import {AuthClientService} from '../../auth/auth-client.service';
+import {DropdownItem} from '../../shared/dropdown/dropdown-item';
 
 @Component({
   selector: 'app-books-overview',
@@ -24,8 +25,10 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
 
   books$: Observable<Book[]>;
   isLogged$: Observable<boolean>;
+  bookDropdownItems$: Observable<DropdownItem[]>;
 
   searchControl = new FormControl('');
+  bookControl = new FormControl(4);
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,7 +39,14 @@ export class BooksOverviewComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.books$ = this.activatedRoute.data.pipe(pluck('books'));
+    this.bookDropdownItems$ = this.books$.pipe(map(books => books?.map(book => ({
+      key: book.id,
+      value: book.name,
+      img: book.imageUrl
+    }))));
     this.isLogged$ = this.authClient.isLogged();
+
+    this.bookControl.valueChanges.subscribe(value => console.log(value));
 
     this.activatedRoute.params.pipe(
       pluck('viewMode'),

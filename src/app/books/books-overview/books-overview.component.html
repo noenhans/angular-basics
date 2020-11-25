@@ -13,11 +13,14 @@
   </div>
 </div>
 <div class="row">
-  <div class="input-group col-lg-4 search__container">
+  <div class="input-group col-lg-4 input__container">
     <input type="text" class="form-control" placeholder="search..." [formControl]="searchControl">
     <div class="input-group-prepend">
       <span class="input-group-text"><i class="fas fa-search"></i></span>
     </div>
+  </div>
+  <div class="col-lg-4 input__container">
+    <app-dropdown [items]="bookDropdownItems$ | async" [formControl]="bookControl"></app-dropdown>
   </div>
 </div>
 <app-books-list *ngIf="viewMode === viewModeValues.GRID; else booksTable"
@@ -31,5 +34,10 @@
 
 <ng-template #loginBtn>
   <a type="button" class="btn btn-success" routerLink="/login">Login</a>
+</ng-template>
+
+<ng-template #itemDropdownTemplate let-item>
+  <span>{{ item.value }}</span>
+  <img [src]="item.img" class="img-thumbnail">
 </ng-template>
 
