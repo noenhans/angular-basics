@@ -3,7 +3,7 @@
     {{ selectedItem?.value || 'Select...' }}
   </button>
   <div class="dropdown-menu" *ngIf="isOpened">
-    <div class="dropdown-item" (click)="select(item)" *ngFor="let item of items" [class.selected]="item === selectedItem">
+    <div class="dropdown-item" (mousedown)="select(item)" *ngFor="let item of items" [class.selected]="item === selectedItem">
       <ng-container *ngTemplateOutlet="dropdownItemTemplate || dropdownItemDefaultTemplate; context: { $implicit: item }">
       </ng-container>
     </div>

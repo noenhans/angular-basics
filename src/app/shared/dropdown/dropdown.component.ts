@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input, TemplateRef} from '@angular/core';
+import {Component, forwardRef, HostListener, Input, TemplateRef} from '@angular/core';
 import {DropdownItem} from './dropdown-item';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
@@ -15,14 +15,19 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 export class DropdownComponent implements ControlValueAccessor {
   @Input() dropdownItemTemplate: TemplateRef<any>;
   @Input() items: DropdownItem[];
-
   selectedItem: DropdownItem;
+
   isOpened = false;
   isDisabled = false;
-
   private value: any;
+
   private onChanged = (value: any) => {};
   private onTouched = () => {};
+
+  @HostListener('focusout')
+  onFocusout(): void {
+    this.isOpened = false;
+  }
 
   toogleDropdown(): void {
     if (!this.isDisabled) {
