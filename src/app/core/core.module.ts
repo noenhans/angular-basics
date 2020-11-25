@@ -3,13 +3,19 @@ import { CommonModule } from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {ErrorHandlingInterceptor} from './error-handling.interceptor';
 import {CorrelationsIdInterceptor} from './correlations-id.interceptor';
+import {OverlayModule} from '@angular/cdk/overlay';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    OverlayModule
+  ],
+  exports: [
+    OverlayModule
   ],
   providers: [
     {
@@ -22,6 +28,9 @@ import {CorrelationsIdInterceptor} from './correlations-id.interceptor';
       useClass: CorrelationsIdInterceptor,
       multi: true
     }
+  ],
+  entryComponents: [
+    SpinnerComponent
   ]
 })
 export class CoreModule { }
