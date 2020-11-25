@@ -16,7 +16,8 @@ export class SpinnerOverlayService {
   showSpinner(): SpinnerRef {
     const overlayRef = this.overlay.create({
       positionStrategy: this.overlay.position().global().centerVertically().centerHorizontally(),
-      scrollStrategy: this.overlay.scrollStrategies.block()
+      scrollStrategy: this.overlay.scrollStrategies.block(),
+      hasBackdrop: true
     });
 
     const componentRef = new ComponentPortal(SpinnerComponent);
