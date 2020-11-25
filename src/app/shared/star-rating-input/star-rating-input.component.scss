@@ -1,0 +1,12 @@
+div.star-input {
+  color: darkgoldenrod;
+  cursor: pointer;
+
+  &.disabled {
+    color: gray;
+  }
+
+  &.disabled, &.readonly {
+    cursor: default;
+  }
+}

@@ -11,6 +11,7 @@ import { NewBookComponent } from './new-book/new-book.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { FilterBooksPipe } from './filter-books.pipe';
 import {AuthModule} from '../auth/auth.module';
+import {SharedModule} from '../shared/shared.module';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {AuthModule} from '../auth/auth.module';
   exports: [],
   imports: [
     CommonModule,
+    SharedModule,
     BooksRoutingModule,
     ReactiveFormsModule,
     AuthModule

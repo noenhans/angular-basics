@@ -1,0 +1,9 @@
+<div class="star-input" [class.disabled]="isDisabled" [class.readonly]="isReadonly">
+  <i
+    class="fa-star"
+    *ngFor="let star of stars"
+    (click)="selectStar(star)"
+    [class.fas]="star <= value"
+    [class.far]="star > value"
+  ></i>
+</div>
