@@ -1,5 +1,5 @@
 <div class="table-toolbar">
-  <button class="btn btn-primary" (click)="toogleEditMode()" *appPermitted="'editBooks'">
+  <button class="btn btn-primary" id="btn-toogle-edit" (click)="toogleEditMode()" *appPermitted="'editBooks'">
     <i class="far fa-edit"></i>
     Toogle edit mode
   </button>
@@ -17,10 +17,10 @@
   </tbody>
 </table>
 <div class="table-toolbar" *ngIf="editMode">
-  <button class="btn btn-danger" (click)="toogleEditMode()">
+  <button class="btn btn-danger" id="btn-toogle-cancel" (click)="toogleEditMode()">
     Cancel
   </button>
-  <button class="btn btn-success" (click)="updateBooks()" [disabled]="booksForm.invalid">
+  <button class="btn btn-success" id="btn-toogle-save" (click)="updateBooks()" [disabled]="booksForm.invalid">
     Save
   </button>
 </div>
