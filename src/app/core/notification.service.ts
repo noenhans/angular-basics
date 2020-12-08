@@ -8,8 +8,6 @@ export class NotificationService {
 
   private notifications$ = new BehaviorSubject<string[]>([]);
 
-  constructor() { }
-
   error(message: string): void {
     const currentNotifications = this.notifications$.value;
     const nextState = [...currentNotifications, message];
