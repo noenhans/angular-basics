@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BooksTableRowComponent } from './books-table-row.component';
 
-describe('BooksTableRowComponent', () => {
+xdescribe('BooksTableRowComponent', () => {
   let component: BooksTableRowComponent;
   let fixture: ComponentFixture<BooksTableRowComponent>;
 

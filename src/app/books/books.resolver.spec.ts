@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
+import {BooksResolver} from './books.resolver';
 
-import { BooksResolver } from './books.guard';
 
-describe('BooksGuard', () => {
+xdescribe('BooksResolver', () => {
   let guard: BooksResolver;
 
   beforeEach(() => {

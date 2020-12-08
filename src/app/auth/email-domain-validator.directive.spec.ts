@@ -1,8 +1,8 @@
-import { EmailDomainVaidatorDirective } from './email-domain-vaidator.directive';
+import {EmailDomainValidatorDirective} from './email-domain-validator.directive';
 
 describe('EmailDomainVaidatorDirective', () => {
   it('should create an instance', () => {
-    const directive = new EmailDomainVaidatorDirective();
+    const directive = new EmailDomainValidatorDirective();
     expect(directive).toBeTruthy();
   });
 });
