@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {of} from 'rxjs';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
-fdescribe('AuthClientService', () => {
+describe('AuthClientService', () => {
   let service: AuthClientService;
 
   describe('HttpClientSpy', () => {
